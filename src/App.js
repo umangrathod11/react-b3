@@ -1,6 +1,7 @@
 import "./styles.css";
 import NewsArticle from "./components/NewsArticle";
 import RelatedArticles from "./components/RelatedArticles";
+import Profile from "./components/Profile";
 
 
 const releatedArticlesData = [
@@ -39,6 +40,30 @@ export default function App() {
       <RelatedArticles
         data={releatedArticlesData}
       />
+      <br />
+      <div style={{ display: "flex", gap: '1rem', flexWrap: 'wrap', padding: '1rem', border: '2px solid #bd778d' }}>
+        <Profile 
+          name="Ghana"
+          designation="Senior Engineer at ABC Tech"
+          imageUrl="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
+        />
+
+        <Profile 
+          name="Anil"
+          designation="Manager at Volvo Tech"
+        />
+
+        <Profile 
+          name="Rajath Kumar Shetty"
+          designation="Director at IBMB Tech Solutions"
+        />
+
+        <Profile 
+          name="R Kumaran Shah"
+          designation="Intern at Ashok Motors Pvt Ltd"
+          imageUrl="https://static01.nyt.com/images/2023/05/11/business/00ai-sparks/00ai-sparks-articleLarge-v2.jpg"
+        />
+      </div>
     </div>
   );
 }
