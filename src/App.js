@@ -1,5 +1,12 @@
 import "./styles.css";
-import NewsArticle from "./components/NewsArticle/component";
+import NewsArticle from "./components/NewsArticle";
+import RelatedArticles from "./components/RelatedArticles";
+
+
+const releatedArticlesData = [
+  { likes: 200, title: 'Title 1', description: 'descroption 1' },
+  { likes: 150, title: 'Title 2', description: 'descroption 2' },
+];
 
 export default function App() {
   return (
@@ -20,10 +27,18 @@ export default function App() {
         <NewsArticle
           title="LG launched AR/VR device"
           description="Some details... paragraph"
+          likes={20}
+        />
+
+        <NewsArticle
+          title="JIO AR Devide launch"
+          likes={500}
+          description="Be ready to get thrilled again with JIO"
         />
       </div>
+      <RelatedArticles
+        data={releatedArticlesData}
+      />
     </div>
   );
 }
-
-console.log("NewsArticle ", NewsArticle, "\n\n\n", typeof NewsArticle);

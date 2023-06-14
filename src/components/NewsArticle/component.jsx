@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from 'prop-types'; 
 import "./style.css";
 
 const NewsArticle = (props) => {
@@ -13,3 +14,9 @@ const NewsArticle = (props) => {
 };
 
 export default NewsArticle;
+
+NewsArticle.proptypes = {
+  likes: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};
