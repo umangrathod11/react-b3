@@ -16,16 +16,6 @@ export const RelatedArticles = (props) => {
                     />
                 ))
             }
-            {/* <NewsArticle
-                likes={data[0].likes}
-                title={data[0].title}
-                description={data[0].description}
-            />
-            <NewsArticle
-                likes={data[1].likes}
-                title={data[1].title}
-                description={data[1].description}
-            /> */}
         </div>
     )
 }
@@ -38,13 +28,3 @@ RelatedArticles.proptypes = {
         description: PropTypes.string,
     })),
 }
-/*
-    const data = [
-        { likes: 200, title: 'Title 1', description: 'descroption 1' },
-        { likes: 150, title: 'Title 2', description: 'descroption 2' },
-    ];
-    <RelatedArticles
-        data={data}
-    />
-
-*/
