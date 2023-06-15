@@ -3,6 +3,7 @@ import NewsArticle from "./components/NewsArticle";
 import RelatedArticles from "./components/RelatedArticles";
 import Profile from "./components/Profile";
 import ImageGallery from "./components/Jun15/ImageGallery";
+import FancyBorder, { BORDER_STYLES } from './components/Jun15/FancyBorder';
 
 
 const releatedArticlesData = [
@@ -88,6 +89,39 @@ export default function App() {
       <br />
       <br />
       <ImageGallery images={images} />
+
+      <br />
+      <br />
+
+      <FancyBorder width="5px" color="blue" borderStyle="double">
+        <h2>I am the title</h2>
+        <div>I am the description</div>
+      </FancyBorder>
+
+      <br />
+      <br />
+
+      <FancyBorder width="5px" color="red" borderStyle={BORDER_STYLES.double}>
+        <img
+          src="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
+          width="256px"
+          height="256px"
+        />
+      </FancyBorder>
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <FancyBorder width="5px" color="green" borderStyle={BORDER_STYLES.dashed}>
+        <img
+          src="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
+          width="256px"
+          height="256px"
+        />
+      </FancyBorder>
+
     </div>
   );
 }
