@@ -30,3 +30,7 @@ Profile.prototypes = {
     name: PropTypes.string.isRequired,
     designation: PropTypes.string.isRequired,
 };
+
+Profile.defaultProps = {
+    imageUrl: "https://cdn-icons-png.flaticon.com/256/1077/1077114.png",
+}
