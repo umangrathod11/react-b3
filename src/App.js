@@ -2,6 +2,7 @@ import React from 'react';
 import "./styles.css";
 import { Button } from './components/Button/button';
 import MemoisedDemo from './components/MemoisedDemo';
+import VowelsCount from './components/VowelsCount';
 
 const getInitialFormValues = () => ({
   name: '',
@@ -74,7 +75,8 @@ export default function App() {
   return (
     <div className="App">
       <h1>Date : June 16, 2023 </h1>
-      <MemoisedDemo />
+      <VowelsCount />
+      {/* <MemoisedDemo /> */}
       <div className="formContainer">
           {id ? <div className='fieldContainer'>
             <label>Emp Id</label>
