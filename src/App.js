@@ -16,6 +16,14 @@ export default function App() {
     setRecords(newRecords);
   }
 
+  const handleAction = (e) => {
+    const { id, action } = e.target.dataset;
+    if (action === "delete") {
+      const newRecords = records.filter(obj => obj.id !== id);
+      setRecords(newRecords);
+    }
+  }
+
   return (
     <div className="App">
       <h1>Date : June 16, 2023 </h1>
@@ -43,6 +51,7 @@ export default function App() {
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -53,9 +62,22 @@ export default function App() {
                       <td>{id}</td>
                       <td>{name}</td>
                       <td>{email}</td>
+                      <td>
+                          <button data-action="delete" data-id={id} onClick={handleAction}>Delete</button>
+                          <button data-action="moveUp" data-id={id} onClick={handleAction}>Move Up</button>
+                          <button data-action="moveDown" data-id={id} onClick={handleAction}>Move Down</button>
+                      </td>
                     </tr>
                   )
                 })
+              }
+              {
+                records.length === 0 ?
+                <tr>
+                  <td colspan="4">No Records</td>
+                </tr>
+                :
+                null
               }
             </tbody>
           </table>

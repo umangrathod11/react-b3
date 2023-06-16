@@ -10,7 +10,7 @@
 }
 
 div.formContainer {
-  width: 50vw;
+  width: 80vw;
   padding: 1rem;
   border: 2px solid navy;
 }
@@ -23,8 +23,9 @@ div.formContainer div.fieldContainer label {
   margin-right: 1rem;
 }
 
-div.formContainer  input {
+div.formContainer input, div.formContainer button {
   padding: 1rem;
+  margin-right: 0.5rem;
 }
 
 div.formContainer, table {
