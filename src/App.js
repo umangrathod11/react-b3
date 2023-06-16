@@ -1,5 +1,6 @@
 import React from 'react';
 import "./styles.css";
+import { Button } from './components/Button/button';
 
 export default function App() {
   const [email, setEmail] = React.useState('')
@@ -41,7 +42,7 @@ export default function App() {
             }} value={email} type="email" />
           </div>
           <div>
-            <input onClick={handleSubmit} type="button" value="Submit" />
+            <Button type="submit" variant="success" onClick={handleSubmit} >Submit</Button>
           </div>
           <br />
           <h2>Employee List</h2>
@@ -63,9 +64,9 @@ export default function App() {
                       <td>{name}</td>
                       <td>{email}</td>
                       <td>
-                          <button data-action="delete" data-id={id} onClick={handleAction}>Delete</button>
-                          <button data-action="moveUp" data-id={id} onClick={handleAction}>Move Up</button>
-                          <button data-action="moveDown" data-id={id} onClick={handleAction}>Move Down</button>
+                        <Button dataAttributes={ { id, action:"delete" }} type="button" variant="danger" onClick={handleAction} >Delete</Button>
+                        <Button dataAttributes={ { id, action:"moveUp" }} type="button" variant="normal" onClick={handleAction} >Move Up</Button>
+                        <Button dataAttributes={ { id, action:"moveDown" }} type="button" variant="normal" onClick={handleAction} >Move Down</Button>
                       </td>
                     </tr>
                   )
@@ -74,7 +75,7 @@ export default function App() {
               {
                 records.length === 0 ?
                 <tr>
-                  <td colspan="4">No Records</td>
+                  <td colSpan="4">No Records</td>
                 </tr>
                 :
                 null
