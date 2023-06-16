@@ -8,3 +8,37 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+div.formContainer {
+  width: 80vw;
+  padding: 1rem;
+  border: 2px solid navy;
+}
+
+div.formContainer div.fieldContainer {
+  margin-bottom: 1rem;
+}
+
+div.formContainer div.fieldContainer label {
+  margin-right: 1rem;
+}
+
+div.formContainer input {
+  padding: 1rem;
+  margin-right: 0.5rem;
+}
+
+div.formContainer button {
+  margin-right: 0.5rem;
+}
+
+div.formContainer, table {
+  margin: 1rem auto;
+}
+table, td, tr, th {
+  border: 1px solid darkgray;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 1rem;
+}

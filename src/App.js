@@ -1,127 +1,140 @@
+import React from 'react';
 import "./styles.css";
-import NewsArticle from "./components/NewsArticle";
-import RelatedArticles from "./components/RelatedArticles";
-import Profile from "./components/Profile";
-import ImageGallery from "./components/Jun15/ImageGallery";
-import FancyBorder, { BORDER_STYLES } from './components/Jun15/FancyBorder';
+import { Button } from './components/Button/button';
 
+const getInitialFormValues = () => ({
+  name: '',
+  email: '',
+  id: '',
+});
 
-const releatedArticlesData = [
-  { likes: 200, title: 'Title 1', description: 'descroption 1' },
-  { likes: 150, title: 'Title 2', description: 'descroption 2' },
-];
-
-const images = [
-  {
-    original: 'https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg',
-    thumbnail: 'https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-gra-130247647.jpg',
-  },
-  {
-    original: 'https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg',
-    thumbnail: 'https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg',
-  },
-  {
-    original: 'https://e0.pxfuel.com/wallpapers/163/906/desktop-wallpaper-beautiful-nature-with-girl-beautiful-girl-with-nature-and-moon-high-resolution-beautiful.jpg',
-    thumbnail: 'https://e0.pxfuel.com/wallpapers/163/906/desktop-wallpaper-beautiful-nature-with-girl-beautiful-girl-with-nature-and-moon-high-resolution-beautiful.jpg',
-  },
-  {
-    original: 'https://c4.wallpaperflare.com/wallpaper/431/451/684/the-most-beautiful-picture-of-nature-wallpaper-preview.jpg',
-    thumbnail: 'https://c4.wallpaperflare.com/wallpaper/431/451/684/the-most-beautiful-picture-of-nature-wallpaper-preview.jpg',
-  }
-];
+const getInitialAppState = () => {
+  return ({
+    form: getInitialFormValues(),
+    records: [],
+  });
+}
 
 export default function App() {
+  const [appState, setAppState] = React.useState(getInitialAppState());
+  const { records, form: { name, email, id } } = appState;
+
+  const handleSubmit = () => {
+    const newRecords = [...records];
+    if (!id) {
+      newRecords.push({
+        name, email, id: crypto.randomUUID(),
+      });
+    } else {
+      for (let i = 0; i < newRecords.length; i++) {
+        if (newRecords[i].id === id) {
+          newRecords[i] = { id, name, email }
+          break;
+        }
+      }
+    }
+    
+    setAppState({
+      form: getInitialFormValues(),
+      records: newRecords
+    })
+  }
+
+  const handleAction = (e) => {
+    const { id, action } = e.target.dataset;
+    const { records, form } = appState;
+    if (action === "delete") {
+      const newAppState = { ...appState }
+      const newRecords = records.filter(obj => obj.id !== id);
+      newAppState.records = newRecords;
+      if (id === form.id) {
+        newAppState.form = getInitialFormValues();
+      }
+      setAppState(newAppState)
+    } else if (action === "edit") {
+      const record = records.filter(obj => obj.id === id)[0];
+      setAppState({
+        ...appState,
+        form: record,
+      })
+    }
+  }
+
+  const updateFormValue = (fieldName, value) => {
+    setAppState({
+      ...appState,
+      form: {
+        ...appState.form,
+        [fieldName]: value,
+      }
+    });
+  }
+
   return (
     <div className="App">
-      <h1>Date : June 9, 2023 </h1>
-      <br />
-      <div>
-        <NewsArticle
-          title="CSK Won 5th IPL"
-          description="Some details... paragraph"
-          likes={200}
-        />
-        <NewsArticle
-          title="LG launched AR/VR device"
-          description="Some details... paragraph"
-          likes={250}
-        />
-        <NewsArticle
-          title="LG launched AR/VR device"
-          description="Some details... paragraph"
-          likes={20}
-        />
-
-        <NewsArticle
-          title="JIO AR Devide launch"
-          likes={500}
-          description="Be ready to get thrilled again with JIO"
-        />
+      <h1>Date : June 16, 2023 </h1>
+      <div className="formContainer">
+          {id ? <div className='fieldContainer'>
+            <label>Emp Id</label>
+            <input value={id} type="text" disabled />
+          </div> : null}
+          <div className='fieldContainer'>
+            <label>Emp name</label>
+            <input onChange={(e) => {
+              updateFormValue('name', e.target.value);
+            }} value={name} type="text" />
+          </div>
+          <div className='fieldContainer'>
+            <label>Emp email</label>
+            <input onChange={(e) => {
+              updateFormValue('email', e.target.value);
+            }} value={email} type="email" />
+          </div>
+          <div>
+            <Button type="submit" variant="success" onClick={handleSubmit} >
+              {id ? 'Update' : 'Add'}
+            </Button>
+          </div>
+          <br />
+          <h2>Employee List</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                records.map(({ id, name, email }) => {
+                  return (
+                    <tr key={id}>
+                      <td>{id}</td>
+                      <td>{name}</td>
+                      <td>{email}</td>
+                      <td>
+                        <Button dataAttributes={ { id, action:"delete" }} type="button" variant="danger" onClick={handleAction} >Delete</Button>
+                        <Button dataAttributes={ { id, action:"moveUp" }} type="button" variant="normal" onClick={handleAction} >Move Up</Button>
+                        <Button dataAttributes={ { id, action:"moveDown" }} type="button" variant="normal" onClick={handleAction} >Move Down</Button>
+                        <Button dataAttributes={ { id, action:"edit" }} type="button" variant="danger" onClick={handleAction} >Edit</Button>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+              {
+                records.length === 0 ?
+                <tr>
+                  <td colSpan="4">No Records</td>
+                </tr>
+                :
+                null
+              }
+            </tbody>
+          </table>
       </div>
-      <RelatedArticles
-        data={releatedArticlesData}
-      />
-      <br />
-      <div style={{ display: "flex", gap: '1rem', flexWrap: 'wrap', padding: '1rem', border: '2px solid #bd778d' }}>
-        <Profile 
-          name="Ghana"
-          designation="Senior Engineer at ABC Tech"
-          imageUrl="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
-        />
-
-        <Profile 
-          name="Anil"
-          designation="Manager at Volvo Tech"
-        />
-
-        <Profile 
-          name="Rajath Kumar Shetty"
-          designation="Director at IBMB Tech Solutions"
-        />
-
-        <Profile 
-          name="R Kumaran Shah"
-          designation="Intern at Ashok Motors Pvt Ltd"
-          imageUrl="https://static01.nyt.com/images/2023/05/11/business/00ai-sparks/00ai-sparks-articleLarge-v2.jpg"
-        />
-      </div>
-
-      <br />
-      <br />
-      <ImageGallery images={images} />
-
-      <br />
-      <br />
-
-      <FancyBorder width="5px" color="blue" borderStyle="double">
-        <h2>I am the title</h2>
-        <div>I am the description</div>
-      </FancyBorder>
-
-      <br />
-      <br />
-
-      <FancyBorder width="5px" color="red" borderStyle={BORDER_STYLES.double}>
-        <img
-          src="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
-          width="256px"
-          height="256px"
-        />
-      </FancyBorder>
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <FancyBorder width="5px" color="green" borderStyle={BORDER_STYLES.dashed}>
-        <img
-          src="https://sbr-technologies.com/wp-content/uploads/2021/06/react_logo.png"
-          width="256px"
-          height="256px"
-        />
-      </FancyBorder>
-
     </div>
   );
 }
