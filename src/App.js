@@ -2,47 +2,98 @@ import React from 'react';
 import "./styles.css";
 import { Button } from './components/Button/button';
 
+const getInitialFormValues = () => ({
+  name: '',
+  email: '',
+  id: '',
+});
+
+const getInitialAppState = () => {
+  return ({
+    form: getInitialFormValues(),
+    records: [],
+  });
+}
+
 export default function App() {
-  const [email, setEmail] = React.useState('')
-  const [name, setName] = React.useState('')
-  const [records, setRecords] = React.useState([]);
+  const [appState, setAppState] = React.useState(getInitialAppState());
+  const { records, form: { name, email, id } } = appState;
 
   const handleSubmit = () => {
-    setEmail('');
-    setName('');
     const newRecords = [...records];
-    newRecords.push({
-      name, email, id: crypto.randomUUID(),
-    });
-    setRecords(newRecords);
+    if (!id) {
+      newRecords.push({
+        name, email, id: crypto.randomUUID(),
+      });
+    } else {
+      for (let i = 0; i < newRecords.length; i++) {
+        if (newRecords[i].id === id) {
+          newRecords[i] = { id, name, email }
+          break;
+        }
+      }
+    }
+    
+    setAppState({
+      form: getInitialFormValues(),
+      records: newRecords
+    })
   }
 
   const handleAction = (e) => {
     const { id, action } = e.target.dataset;
+    const { records, form } = appState;
     if (action === "delete") {
+      const newAppState = { ...appState }
       const newRecords = records.filter(obj => obj.id !== id);
-      setRecords(newRecords);
+      newAppState.records = newRecords;
+      if (id === form.id) {
+        newAppState.form = getInitialFormValues();
+      }
+      setAppState(newAppState)
+    } else if (action === "edit") {
+      const record = records.filter(obj => obj.id === id)[0];
+      setAppState({
+        ...appState,
+        form: record,
+      })
     }
+  }
+
+  const updateFormValue = (fieldName, value) => {
+    setAppState({
+      ...appState,
+      form: {
+        ...appState.form,
+        [fieldName]: value,
+      }
+    });
   }
 
   return (
     <div className="App">
       <h1>Date : June 16, 2023 </h1>
       <div className="formContainer">
+          {id ? <div className='fieldContainer'>
+            <label>Emp Id</label>
+            <input value={id} type="text" disabled />
+          </div> : null}
           <div className='fieldContainer'>
             <label>Emp name</label>
             <input onChange={(e) => {
-              setName(e.target.value)
+              updateFormValue('name', e.target.value);
             }} value={name} type="text" />
           </div>
           <div className='fieldContainer'>
             <label>Emp email</label>
             <input onChange={(e) => {
-              setEmail(e.target.value)
+              updateFormValue('email', e.target.value);
             }} value={email} type="email" />
           </div>
           <div>
-            <Button type="submit" variant="success" onClick={handleSubmit} >Submit</Button>
+            <Button type="submit" variant="success" onClick={handleSubmit} >
+              {id ? 'Update' : 'Add'}
+            </Button>
           </div>
           <br />
           <h2>Employee List</h2>
@@ -67,6 +118,7 @@ export default function App() {
                         <Button dataAttributes={ { id, action:"delete" }} type="button" variant="danger" onClick={handleAction} >Delete</Button>
                         <Button dataAttributes={ { id, action:"moveUp" }} type="button" variant="normal" onClick={handleAction} >Move Up</Button>
                         <Button dataAttributes={ { id, action:"moveDown" }} type="button" variant="normal" onClick={handleAction} >Move Down</Button>
+                        <Button dataAttributes={ { id, action:"edit" }} type="button" variant="danger" onClick={handleAction} >Edit</Button>
                       </td>
                     </tr>
                   )
