@@ -1,0 +1,74 @@
+#snehMilanContainer {
+    margin-bottom: 2rem;
+}
+
+#snehMilanContainer .tabItems {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+
+#snehMilanContainer .tabItems .tabItem {
+    border: 2px solid black;
+    padding: 1rem;
+    cursor: pointer;
+    width: 12rem;
+}
+
+#snehMilanContainer .tabItems .tabItem:hover {
+    color: gray;
+}
+
+#snehMilanContainer div.tabItems div.activeItab {
+    background-color: navy;
+    color: white;
+    border-color: tomato;
+}
+
+#snehMilanContainer div.tabItems div.activeItab:hover {
+    color: wheat;
+}
+
+#snehMilanContainer .tabComponent {
+    border: 2px solid tomato;
+    padding: 1rem;
+    width: 80vw;
+    margin: 0px auto;
+}
+
+#viewMembers .interestItem {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
+
+#volunteersList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+#volunteersList section {
+    border: 2px solid darkcyan;
+   
+}
+
+#volunteersList section div.title {
+    color: #116611;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid black;
+    padding: 0.5rem;
+}
+
+#volunteersList section div.content {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.5rem;
+}
