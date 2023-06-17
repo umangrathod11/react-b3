@@ -4,7 +4,6 @@ import { EDU_TO_TEXT, INTEREST_TO_TEXT } from '../constants';
 
 export const MembersList = ({ records }) => {
 
-    console.log('records ', records);
     return (
         <div id="viewMembers">
             <table>

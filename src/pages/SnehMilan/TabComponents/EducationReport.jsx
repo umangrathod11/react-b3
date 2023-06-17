@@ -2,6 +2,7 @@ import React from 'react';
 import { RecordPropType } from '../reducer';
 import Pr from 'prop-types';
 import { EDUCATION, EDU_TO_TEXT } from '../constants';
+import { getPersonNameLabel } from '../helper';
 
 export const EducationReport = ({ records }) => {
     const groupedData = {};
@@ -9,8 +10,6 @@ export const EducationReport = ({ records }) => {
     EDUCATION.map(obj => obj.value).forEach((level) => groupedData[level] = []);
     
     records.forEach((obj) => groupedData[obj.education].push(obj));
-
-    console.log('groupedData ', groupedData);
 
     const sortedValues = EDUCATION.map(obj => obj.value).sort((a, b) => {
         return groupedData[b].length - groupedData[a].length;
@@ -23,7 +22,7 @@ export const EducationReport = ({ records }) => {
         let row = (<tr key={level} data-group={level}>
             <td rowSpan={rowSpanCount}>{EDU_TO_TEXT[level]}</td>
             <td rowSpan={rowSpanCount}>{groupedData[level].length}</td>
-            <td>{totalRows > 0 ? groupedData[level][0].name : ''}</td>
+            <td>{getPersonNameLabel(groupedData[level][0])}</td>
         </tr>);
         tableRows.push(row);
         /* append other rows */
@@ -31,7 +30,7 @@ export const EducationReport = ({ records }) => {
             const record = groupedData[level][i];
             row = (
                 <tr key={record.id}>
-                    <td>{record.name}</td>
+                    <td>{getPersonNameLabel(record)}</td>
                 </tr>
             );
             tableRows.push(row);

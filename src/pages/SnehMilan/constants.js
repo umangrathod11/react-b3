@@ -48,6 +48,16 @@ export const INTEREST_CONTRIBUTION = [
         display: 'Grants & Subsidy Awareness',
         description: 'Every year our village get grants of amount 10L or more, but because of lack of awareness, legal process - we are not able to utilise it. Help our Gram panchayat to avail it.'
     },
+    {
+        value: 'AGRICULTURE_INNOVATIONS',
+        display: 'Take Agriculture to Next Level',
+        description: 'Have new ideas on improving the quality of farming? Come forward and share, We will arrang the fund'
+    },
+    {
+        value: 'GIRL_CHILD_EDUCATION',
+        display: 'Beti Bachao, Beti Padhao',
+        description: `Take initiatives and try to bring girl child education dropout rate to 0.`
+    }
 ];
 
 export const INTEREST_TO_TEXT = INTEREST_CONTRIBUTION.reduce((acc, obj) => { acc[obj.value] = obj.display; return acc; }, {});

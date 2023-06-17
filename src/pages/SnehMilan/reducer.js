@@ -48,7 +48,7 @@ const DummyRecords = [
         phone: '98332 00998',
         city: 'Ahmedabad',
         education: EDUCATION[2].value,
-        interests: [INTEREST_CONTRIBUTION[0].value]
+        interests: [INTEREST_CONTRIBUTION[4].value]
     },
     {
         id: crypto.randomUUID(),
@@ -58,7 +58,6 @@ const DummyRecords = [
         education: EDUCATION[3].value,
         interests: [INTEREST_CONTRIBUTION[0].value]
     },
-    ,
     {
         id: crypto.randomUUID(),
         name: 'Pritam Kumar KV',
@@ -66,6 +65,14 @@ const DummyRecords = [
         city: 'Baroda',
         education: EDUCATION[4].value,
         interests: [INTEREST_CONTRIBUTION[3].value]
+    },
+    {
+        id: crypto.randomUUID(),
+        name: 'Vraj Shah',
+        phone: '96963 33220',
+        city: 'Ahmedabad',
+        education: EDUCATION[3].value,
+        interests: [INTEREST_CONTRIBUTION[3].value, INTEREST_CONTRIBUTION[4].value]
     }
 ]
 export const getInitialAppState = () => {
