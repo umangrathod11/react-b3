@@ -28,6 +28,14 @@ export const RecordPropType = Pr.shape({
 const DummyRecords = [
     {
         id: crypto.randomUUID(),
+        name: 'Roshan Dabhi',
+        phone: '99980 99980',
+        city: 'Bangalore',
+        education: EDUCATION[4].value,
+        interests: [INTEREST_CONTRIBUTION[5].value, INTEREST_CONTRIBUTION[2].value]
+    },
+    {
+        id: crypto.randomUUID(),
         name: 'Ghanshyam KD',
         phone: '89000 00098',
         city: 'Surat',
@@ -73,7 +81,31 @@ const DummyRecords = [
         city: 'Ahmedabad',
         education: EDUCATION[3].value,
         interests: [INTEREST_CONTRIBUTION[3].value, INTEREST_CONTRIBUTION[4].value]
-    }
+    },
+    {
+        id: crypto.randomUUID(),
+        name: 'Riya Khemani',
+        phone: '85285 23366',
+        city: 'Surat',
+        education: EDUCATION[4].value,
+        interests: [INTEREST_CONTRIBUTION[5].value, INTEREST_CONTRIBUTION[2].value]
+    },
+    {
+        id: crypto.randomUUID(),
+        name: 'Shweta Malani',
+        phone: '98700 00000',
+        city: 'Baroda',
+        education: EDUCATION[5].value,
+        interests: [INTEREST_CONTRIBUTION[0].value, INTEREST_CONTRIBUTION[2].value]
+    },
+    {
+        id: crypto.randomUUID(),
+        name: 'Manoj Desai',
+        phone: '98700 00000',
+        city: 'Surat',
+        education: EDUCATION[4].value,
+        interests: [INTEREST_CONTRIBUTION[1].value]
+    },
 ]
 export const getInitialAppState = () => {
     return ({
