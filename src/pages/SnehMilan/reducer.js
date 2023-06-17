@@ -1,4 +1,5 @@
 import { EDUCATION, INTEREST_CONTRIBUTION, TAB_IDS } from "./constants";
+import Pr from 'prop-types';
 
 const getInitialFormValues = () => ({
     id: '',
@@ -8,6 +9,20 @@ const getInitialFormValues = () => ({
     education: '',
     isPinned: false,
     interests: []
+});
+
+export const RecordPropType = Pr.shape({
+    id: Pr.string,
+    name: Pr.string,
+    phone: Pr.string,
+    city: Pr.string,
+    education: Pr.oneOf(EDUCATION.map(obj => obj.value)),
+    isPinned: Pr.bool,
+    interests: Pr.arrayOf(Pr.string), 
+    /*  
+        this need to be fixed - this should be array of string,
+        but possible values are one of INTEREST_CONTRIBUTION.map(obj => obj.value)
+    */
 });
 
 const DummyRecords = [

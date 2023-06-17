@@ -1,5 +1,9 @@
 export const EDUCATION = [
     {
+        value: 'BELOW_10',
+        display: 'Below 10th'
+    },
+    {
         value: '10_PASS',
         display: '10th Pass'
     },
