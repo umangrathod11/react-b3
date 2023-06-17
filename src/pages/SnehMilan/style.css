@@ -1,0 +1,46 @@
+#snehMilanContainer {
+
+}
+
+#snehMilanContainer .tabItems {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+
+#snehMilanContainer .tabItems .tabItem {
+    border: 2px solid black;
+    padding: 1rem;
+    cursor: pointer;
+    width: 12rem;
+}
+
+#snehMilanContainer .tabItems .tabItem:hover {
+    color: gray;
+}
+
+#snehMilanContainer div.tabItems div.activeItab {
+    background-color: navy;
+    color: white;
+    border-color: tomato;
+}
+
+#snehMilanContainer div.tabItems div.activeItab:hover {
+    color: wheat;
+}
+
+#snehMilanContainer .tabComponent {
+    border: 2px solid tomato;
+    padding: 1rem;
+    width: 80vw;
+    margin: 0px auto;
+}
+
+#viewMembers .interestItem {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
