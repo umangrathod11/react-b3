@@ -1,7 +1,7 @@
 import { EDUCATION, INTEREST_CONTRIBUTION, TAB_IDS } from "./constants";
 import Pr from 'prop-types';
 
-const getInitialFormValues = () => ({
+export const getInitialFormValues = () => ({
     id: '',
     name: '',
     phone: '',
@@ -127,7 +127,8 @@ export const reducerFn = (state, action) => {
         case ACTION_TYPES.ADD_RECORD:
             return {
                 ...state,
-                records: [...state.records, action.payload],
+                records: [action.payload, ...state.records],
+                /* showing recently added record on top, so don't have to scroll bottom in view memners tab */
             };
 
         case ACTION_TYPES.DELETE_RECORD:

@@ -6,13 +6,10 @@
 
 .App {
   font-family: sans-serif;
-  text-align: center;
 }
 
 div.formContainer {
-  width: 80vw;
   padding: 1rem;
-  border: 2px solid navy;
 }
 
 div.formContainer div.fieldContainer {
@@ -23,7 +20,7 @@ div.formContainer div.fieldContainer label, #memoisedDataEntryForm label {
   margin-right: 1rem;
 }
 
-div.formContainer input, #memoisedDataEntryForm input {
+div.formContainer input, #memoisedDataEntryForm input, div.formContainer select {
   padding: 1rem;
   margin-right: 0.5rem;
 }
