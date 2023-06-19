@@ -54,15 +54,20 @@
 
 #volunteersList section {
     border: 2px solid darkcyan;
+    border-radius: 1rem;
    
 }
 
 #volunteersList section div.title {
-    color: #116611;
-    font-size: 1.25rem;
+    color: #0a156f;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid black;
+    border-radius: 1rem 1rem 0px 0px;
     padding: 0.5rem;
+    text-align: center;
+    background: aliceblue;
+    font-weight: bold;
 }
 
 #volunteersList section div.content {
