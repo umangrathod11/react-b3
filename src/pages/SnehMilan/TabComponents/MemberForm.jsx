@@ -47,7 +47,8 @@ export const MemberForm = ({ dispatch }) => {
             <div className='fieldContainer'>
                 <label>Name</label>
                 <input onChange={(e) => {
-                    setRecord((oldState) => ({ ...oldState, name: e.target.value }));
+                    // setRecord((oldState) => ({ ...oldState, name: e.target.value }));
+                    setRecord({ ...record, name: e.target.value });
                 }} value={name} />
             </div>
 

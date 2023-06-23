@@ -1,8 +1,10 @@
 import React from 'react';
 import Pr from 'prop-types';
 import { EDU_TO_TEXT, INTEREST_TO_TEXT } from '../constants';
+import { Button } from '../../../components/Button/button';
+import { ACTION_TYPES } from '../reducer';
 
-export const MembersList = ({ records }) => {
+export const MembersList = ({ records, dispatch }) => {
 
     return (
         <div id="viewMembers">
@@ -15,6 +17,7 @@ export const MembersList = ({ records }) => {
                         <td>City</td>
                         <td>Education</td>
                         <td>Interests</td>
+                        <td>Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +34,14 @@ export const MembersList = ({ records }) => {
                                     {
                                         interests.map((interestId) => <div className="interestItem" key={interestId}>{INTEREST_TO_TEXT[interestId]}</div> )
                                     }
+                                </td>
+                                <td>
+                                    <Button variant="danger" onClick={(e) => {
+                                        dispatch({
+                                            type: ACTION_TYPES.DELETE_RECORD,
+                                            payload: id
+                                        });
+                                    }}>Delete</Button>
                                 </td>
                             </tr>
                         )
