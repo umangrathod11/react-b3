@@ -25,7 +25,7 @@ export const SnehMilan = () => {
     }
     
     const ComponentToRender = TAB_ID_WISE_COMPONENTS[tabId];
-    const propsToPass = tabId === TAB_IDS.ADD_MEMBER ? { dispatch } : { records };
+    const propsToPass = tabId === TAB_IDS.ADD_MEMBER ? { dispatch } : { records, dispatch };
 
     return (
         <div id="snehMilanContainer">
