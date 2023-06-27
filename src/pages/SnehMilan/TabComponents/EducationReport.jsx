@@ -42,7 +42,7 @@ export const EducationReport = ({ records }) => {
                 <tr>
                     <th>Education Level</th>
                     <th>Total Count</th>
-                    <th>Members</th>
+                    <th>Members List</th>
                 </tr>
             </thead>
             <tbody>
