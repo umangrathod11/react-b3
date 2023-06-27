@@ -1,12 +1,12 @@
 import React from 'react';
 import "./styles.css";
-import SnehMilan from './pages/SnehMilan';
+import Community from './pages/Community';
 
 export default function App() {
 
   return (
     <div className="App">
-      <SnehMilan />
+      <Community />
     </div>
   );
 }

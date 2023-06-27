@@ -1,8 +1,8 @@
-#snehMilanContainer {
+#CommunityContainer {
     margin-bottom: 2rem;
 }
 
-#snehMilanContainer .tabItems {
+#CommunityContainer .tabItems {
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -10,28 +10,28 @@
 }
 
 
-#snehMilanContainer .tabItems .tabItem {
+#CommunityContainer .tabItems .tabItem {
     border: 2px solid black;
     padding: 1rem;
     cursor: pointer;
     width: 12rem;
 }
 
-#snehMilanContainer .tabItems .tabItem:hover {
+#CommunityContainer .tabItems .tabItem:hover {
     color: gray;
 }
 
-#snehMilanContainer div.tabItems div.activeItab {
+#CommunityContainer div.tabItems div.activeItab {
     background-color: navy;
     color: white;
     border-color: tomato;
 }
 
-#snehMilanContainer div.tabItems div.activeItab:hover {
+#CommunityContainer div.tabItems div.activeItab:hover {
     color: wheat;
 }
 
-#snehMilanContainer .tabComponent {
+#CommunityContainer .tabComponent {
     border: 2px solid tomato;
     padding: 1rem;
     width: 80vw;

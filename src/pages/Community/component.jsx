@@ -12,7 +12,7 @@ const TAB_ID_WISE_COMPONENTS = {
     [TAB_IDS.VIEW_MEMBERS]: MembersList,
 };
 
-export const SnehMilan = () => {
+export const Community = () => {
     const [myState, dispatch] = React.useReducer(reducerFn, getInitialAppState());
     const { records, tabId } = myState;
 
@@ -28,7 +28,7 @@ export const SnehMilan = () => {
     const propsToPass = tabId === TAB_IDS.ADD_MEMBER ? { dispatch } : { records, dispatch };
 
     return (
-        <div id="snehMilanContainer">
+        <div id="CommunityContainer">
             <div className="tabItems">
                 {TABS.map(({ id, text }) => {
                     return (
@@ -57,4 +57,4 @@ export const SnehMilan = () => {
 
 }
 
-SnehMilan.propTypes = {};
+Community.propTypes = {};
