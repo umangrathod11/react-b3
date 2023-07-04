@@ -108,11 +108,17 @@ const DummyRecords = [
     },
 ]
 export const getInitialAppState = () => {
-    return ({
+    const stored = localStorage.getItem('community');
+    if (stored) {
+        return JSON.parse(stored)
+    }
+    const initialState = {
         form: getInitialFormValues(),
         records: DummyRecords,
         tabId: TAB_IDS.VIEW_MEMBERS,
-    });
+    };
+    localStorage.setItem('community', JSON.stringify(initialState));
+    return (initialState);
 };
 
 export const ACTION_TYPES = {
@@ -123,26 +129,34 @@ export const ACTION_TYPES = {
 };
 
 export const reducerFn = (state, action) => {
+    let newState = { ...state };
     switch (action.type) {
         case ACTION_TYPES.ADD_RECORD:
-            return {
+            newState = {
                 ...state,
                 records: [action.payload, ...state.records],
                 /* showing recently added record on top, so don't have to scroll bottom in view memners tab */
             };
+            break;
 
         case ACTION_TYPES.DELETE_RECORD:
-            return {
+            newState = {
                 ...state,
                 records: state.records.filter(obj => obj.id !== action.payload),
             };
+            break;
         
         case ACTION_TYPES.CHANGE_CURRENT_TAB:
-            return {
+            newState = {
                 ...state,
                 tabId: action.payload,
             }
+            break;
+
         default:
             break;
     }
+
+    localStorage.setItem('community', JSON.stringify(newState));
+    return newState;
 }
