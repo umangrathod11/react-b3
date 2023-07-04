@@ -16,13 +16,14 @@ export const Community = () => {
     const [myState, dispatch] = React.useReducer(reducerFn, getInitialAppState());
     const { records, tabId } = myState;
 
-    const changeTab = (e) => {
+    const changeTab = React.useCallback((e) => {
         const tabId = e.target.dataset.tabid;
         dispatch({
             type: ACTION_TYPES.CHANGE_CURRENT_TAB,
             payload: tabId,
         });
-    }
+    }, [dispatch]);
+    
     
     const ComponentToRender = TAB_ID_WISE_COMPONENTS[tabId];
     const propsToPass = tabId === TAB_IDS.ADD_MEMBER ? { dispatch } : { records, dispatch };
